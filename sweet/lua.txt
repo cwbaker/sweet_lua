@@ -4,12 +4,12 @@
 :theme: sweet
 :pygments:
 
-= Sweet Lua =
+= Sweet Lua
 
-== Overview ==
+== Overview
 
-Sweet Lua is a C++ to Lua binding library.  It requires Microsoft Visual Studio 
-2008 (MSVC 9.0) and MinGW.
+Sweet Lua is a C++ to Lua binding library.  It compiles with Microsoft Visual 
+Studio 2008 (MSVC 9.0), MinGW (GCC 4.6.2), and Xcode (LLVM-GCC 4.2.1).
 
 Features:
 
@@ -22,7 +22,7 @@ Features:
   - STL vector, list, set, and map integration.
   - Boost Filesystem integration.
 
-=== Luabind vs Sweet Lua ===
+=== Luabind vs Sweet Lua
 
 Luabind is a C++/Lua binding library written by Daniel
 Wallin and Arvid Nordberg.  Documentation is available at
@@ -60,7 +60,7 @@ environment for C\++ to host - with support for the style of
 object orientation and execution model more in control of the
 C++ application developer.
 
-=== SWIG vs Sweet Lua ===
+=== SWIG vs Sweet Lua
 
 SWIG (simple wrapper interface generator) generates code to
 interface C++ programs with scripting languages.  Documentation
@@ -79,21 +79,22 @@ In summary SWIG is probably better for you if you want to support
 binding to other languages in addition to Lua and if you don't mind
 adding an additional generation step to your build.
 
-== Installation ==
+== Installation
 
 Sweet Lua is built and installed by downloading the latest version
-from http://www.sweetsoftware.co.nz/, extracting the archive onto your 
-computer, and then running "`build`" from the top level directory.  
-This builds all variants for the host platform into the library directory.
+http://www.sweetsoftware.co.nz/, extracting the archive onto your computer, 
+and then running "`build.bat`" (on Windows) or "`sh ./build.sh`" (on MacOSX)
+from the top level directory.  This builds all variants and a Visual Studio 
+solution or Xcode project to browse through the source.
 
-You'll need to add the top level directory (e.g. "`c:\sweet\sweet_lua-2010.09.11`") 
-and the library directory (e.g. "`c:\sweet\sweet_lua-2010.09.11\lib`") to your
+You'll need to add the top level directory (e.g. "`c:\sweet\sweet_lua`") 
+and the library directory (e.g. "`c:\sweet\sweet_lua\lib`") to your
 compiler's header and library search paths respectively.
 
 If you want Sweet Lua built to another location or with different variants 
 and/or settings then you'll need to edit the settings in "`sweet/build.lua`".
 
-== Usage ==
+== Usage
 
 Sweet Lua is a C\++ library for providing Lua bindings to C++ variables, functions, 
 and objects.  It provides classes to represent the Lua virtual machine (Lua), 
@@ -115,7 +116,7 @@ calls can yield and return control from the virtual machine back to the program
 allowing asynchronous behaviour to be abstracted behind an interface that scripts 
 can treat as synchronous.
 
-=== Initialization ===
+=== Initialization
 
 Initializing the library is as simple as constructing a Lua object to represent
 the global environment and virtual machine and registering the variables, functions,
@@ -158,7 +159,7 @@ combination of bound values and out of order parameters.
 include::lua/lua_examples/lua_hello_world_example.cpp[]
 ----
 
-=== Scripts and Functions ===
+=== Scripts and Functions
 
 Scripts and functions are executed by calling `Lua::call()`, 
 `LuaThread::call()`, or `LuaThread::resume()`.
@@ -175,7 +176,7 @@ will be executed.
 include::lua/lua_examples/lua_factorial_example.cpp[]
 ----
 
-=== Objects ===
+=== Objects
 
 By default C\++ objects are stored in Lua as user data.  C\++ objects passed to 
 Lua are copy constructed into user data values.  When these user data values are 
@@ -225,7 +226,7 @@ to provide a different value for the `self` parameter.
 include::lua/lua_examples/lua_logging_example.cpp[]
 ----
 
-=== Classes and Prototypes ===
+=== Classes and Prototypes
 
 Lua is a prototype based language.  
 
@@ -264,7 +265,7 @@ to the correct C++ object.
 include::lua/lua_examples/lua_logging_prototype_example.cpp[]
 ----
 
-=== Weak Objects ===
+=== Weak Objects
 
 Often an application will give Lua script ownership of the lifetime of the
 objects that it creates.  The simplest way to do this is to store an
@@ -304,7 +305,7 @@ from the weak objects table.
 include::lua/lua_examples/lua_logging_owned_by_lua_example.cpp[]
 ----
 
-=== Coroutines ===
+=== Coroutines
 
 The library provides support for coroutines through the LuaThread object and
 the `yield()` policy that is used to generate a C++ function that yields after 
@@ -318,7 +319,7 @@ The `yield()` function is used to wrap the function pointer passed in when
 setting the value of C++ functions.  It marks the function as needing to 
 generate a yield on return instead of returning control to Lua.
 
-=== Standard Template Library Integration ===
+=== Standard Template Library Integration
 
 There is a small amount of integration with the Standard Template Library.  The
 standard containers vector, list, set, multiset, map, and multimap can all be
@@ -336,7 +337,7 @@ function and converting the sequence into a Lua iterator.
 include::lua/lua_examples/lua_vector_example.cpp[]
 ----
 
-=== Boost Integration ===
+=== Boost Integration
 
 There is a small amount of integration with the Boost Filesystem library.  The
 `basic_directory_iterator<>` and `basic_recursive_directory_iterator<>` 
@@ -349,4 +350,3 @@ string.
 ----
 #include <sweet/lua/filesystem.hpp>
 ----
-
